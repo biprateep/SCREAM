@@ -1,4 +1,4 @@
-## SCREAM: Stream Characterization with Error-Aware Machine Learning
+## SCREAM: Stream **C**ha**R**acterization with **E**rror-**A**ware **M**achine learning
 
 This repository contains code for SCREAM, a weakly supervised machine learning framework for characterizing Milky Way stellar streams.
 SCREAM is based on the CATHODE anomaly detection framework and is applied here to the GD-1 stellar stream.
