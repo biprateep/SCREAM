@@ -155,6 +155,11 @@ def download_and_match_stream(
     data_path = Path(output_dir) / stream_track
     data_path.mkdir(parents=True, exist_ok=True)
 
+    out_file = data_path / f"{stream_track}_matched.hdf5"
+    if out_file.exists():
+        print(f"Found existing dataset: {out_file}. Loading instead of downloading.")
+        return Table.read(str(out_file))
+
     all_matched_data = []
 
     for i in range(Nchunks):
@@ -245,7 +250,6 @@ def download_and_match_stream(
     final_table = vstack(all_matched_data)
     final_table = unique(final_table, keys=["source_id"], keep="first")
 
-    out_file = data_path / f"{stream_track}_matched.hdf5"
     final_table.write(str(out_file), path="data", overwrite=True, serialize_meta=True)
     print(f"Saved completed dataset: {out_file} ({len(final_table)} rows)")
 
